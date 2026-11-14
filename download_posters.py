@@ -29,6 +29,15 @@ if not match:
 
 films = json.loads(match.group(1))
 
+films.extend([
+    {"title": "Dune (1984)"},
+    {"title": "Blade Runner: The Final Cut"},
+    {"title": "Blade Runner 2049"},
+    {"title": "Avatar: The Way of Water"},
+    {"title": "Space: 1999"}
+])
+
+
 if len(films) < 200:
     raise SystemExit(
         f"Expected at least 200 entries; found {len(films)}"

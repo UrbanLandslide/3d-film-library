@@ -1,76 +1,29 @@
 Catalogue: 220
-Existing posters: 71
-New posters: 78
-Not matched: 71
+Existing posters: 149
+New posters: 47
+Still missing: 24
 
-2:22 — invalid poster image
-A Better Tomorrow 2012 — no exact poster match
-A Liar's Autobiography — no exact poster match
-Alien: Covenant — invalid poster image
-Batman: The Dark Knight Rises — no exact poster match
-Berättelsen om Pi — no exact poster match
-Blue Ruin (2013) — no exact poster match
-Cirque du Soleil: Worlds Away — invalid poster image
-Countdown (Der Countdown) — no exact poster match
-Cousteau — 3 Film Collection — no exact poster match
-Deep Purple: From the Setting Sun... In Wacken — no exact poster match
-Dial M for Murder — invalid poster image
-Doctor Who: The Day of the Doctor — no exact poster match
-Drive Angry — invalid poster image
-Dunderhead (title uncertain) — no exact poster match
-Extraterrestrial — invalid poster image
-Fantastic Beasts: The Crimes of Grindelwald — invalid poster image
-Fast Lane — no exact poster match
-Finding Dory — invalid poster image
-Frankenstein: Das Experiment — no exact poster match
-Frozen II — invalid poster image
-Galapagos 3D — no exact poster match
-Haunting of Winchester House — no exact poster match
-The Hobbit — 3D trilogy (collection reference) — no exact poster match
-Hybrid 3D — no exact poster match
-Ice Age 3: Dawn of the Dinosaurs — no exact poster match
-Ice Age 4: Continental Drift — no exact poster match
-It Came from Outer Space — invalid poster image
-Joe Satriani: Satchurated Live in Montreal — no exact poster match
-John Carter — invalid poster image
-Jupiter Ascending — invalid poster image
-Justice League — invalid poster image
-Kenny Chesney: Summer in 3D — no exact poster match
-Kung Fu Panda 3 — invalid poster image
-Lee Evans: Roadrunner Live at the O2 — no exact poster match
-The Legend of Harrow Woods — no exact poster match
-Lord of the Dance 3D — no exact poster match
-The Lord of the Rings (collection / edition uncertain) — no exact poster match
-The Matrix Reloaded / The Matrix Revolutions — no exact poster match
-Men in Black 3 — invalid poster image
-Miss Peregrine's Home for Peculiar Children — invalid poster image
-Monster House — invalid poster image
-Musei Vaticani 3D — no exact poster match
-My Bloody Valentine — invalid poster image
-Nurse 3D — no exact poster match
-Pirates of the Caribbean: Collection — no exact poster match
-Planet Earth: The Complete Series (Episodes 10–11 & Bonus) — no exact poster match
-Planet Earth: The Complete Series (Episodes 1–9) — no exact poster match
-The Presence (title uncertain) — no exact poster match
-R.I.P.D. — invalid poster image
-Rogue One: A Star Wars Story — invalid poster image
-Saw 3D: The Final Chapter — no exact poster match
-Shark Night 3D — no exact poster match
-Shazam! 3D — no exact poster match
-Shock Labyrinth 3D — no exact poster match
-Shrek the Third — invalid poster image
-Skarb: Death of Dora Land 3D — no exact poster match
-Sleepwalker 3D — no exact poster match
-Solomon Kane — invalid poster image
-Solomon Kane 2 (title uncertain) — no exact poster match
-Spiders 3D — no exact poster match
-Star Wars: The Force Awakens — no exact poster match
-The Thing (2011) — no exact poster match
-The Thing (1982) — no exact poster match
-The Three Musketeers (2011) — no exact poster match
-Threesome 3D — no exact poster match
-Titanic 3D — no exact poster match
-War for the Planet of the Apes — invalid poster image
-Warcraft: The Beginning — no exact poster match
-Watchmen: The Ultimate Cut — no exact poster match
-Yogi Bear — invalid poster image
+Countdown (Der Countdown) — no usable matching poster
+Cousteau — 3 Film Collection — collection or uncertain title
+Doctor Who: The Day of the Doctor — no usable matching poster
+Dunderhead (title uncertain) — collection or uncertain title
+Fast Lane — no usable matching poster
+Frankenstein: Das Experiment — no usable matching poster
+The Hobbit — 3D trilogy (collection reference) — collection or uncertain title
+Hybrid 3D — no usable matching poster
+Joe Satriani: Satchurated Live in Montreal — no usable matching poster
+Kenny Chesney: Summer in 3D — no usable matching poster
+The Legend of Harrow Woods — no usable matching poster
+Lord of the Dance 3D — no usable matching poster
+The Lord of the Rings (collection / edition uncertain) — collection or uncertain title
+The Matrix Reloaded / The Matrix Revolutions — collection or uncertain title
+Musei Vaticani 3D — no usable matching poster
+Pirates of the Caribbean: Collection — collection or uncertain title
+Planet Earth: The Complete Series (Episodes 10–11 & Bonus) — collection or uncertain title
+Planet Earth: The Complete Series (Episodes 1–9) — collection or uncertain title
+The Presence (title uncertain) — collection or uncertain title
+Saw 3D: The Final Chapter — no usable matching poster
+Skarb: Death of Dora Land 3D — collection or uncertain title
+Sleepwalker 3D — no usable matching poster
+Solomon Kane 2 (title uncertain) — collection or uncertain title
+Threesome 3D — no usable matching poster

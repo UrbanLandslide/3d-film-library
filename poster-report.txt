@@ -1,7 +1,7 @@
-Catalogue: 220
-Existing posters: 149
-New posters: 47
-Still missing: 24
+Catalogue: 225
+Existing posters: 196
+New posters: 3
+Still missing: 26
 
 Countdown (Der Countdown) — no usable matching poster
 Cousteau — 3 Film Collection — collection or uncertain title
@@ -27,3 +27,5 @@ Skarb: Death of Dora Land 3D — collection or uncertain title
 Sleepwalker 3D — no usable matching poster
 Solomon Kane 2 (title uncertain) — collection or uncertain title
 Threesome 3D — no usable matching poster
+Dune (1984) — no usable matching poster
+Blade Runner: The Final Cut — no usable matching poster

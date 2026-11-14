@@ -1,40 +1,70 @@
 #!/usr/bin/env python3
-"""Download film artwork into posters/ on GitHub Actions; no API key required."""
-import re, json, time, urllib.request, urllib.parse, pathlib, difflib
-source=pathlib.Path('index.html').read_text(encoding='utf-8')
-films=re.findall(r"^\['((?:\\'|[^'])+)','",source,re.M)
-assert len(films)>=100, f'Only {len(films)} film titles found'
-folder=pathlib.Path('posters');folder.mkdir(exist_ok=True)
-exceptions={'Jurassic World 3D':'Jurassic World','Jurassic Park 3D':'Jurassic Park','IMAX: Under the Sea':'Under the Sea 3D','IMAX: Born to Be Wild':'Born to Be Wild 3D','IMAX: Dinosaurs Alive!':'Dinosaurs Alive!','The Wizard of Oz':'The Wizard of Oz 1939','The Lion King':'The Lion King 1994','Predator':'Predator 1987','The Mummy':'The Mummy 2017','The Three Musketeers':'The Three Musketeers 2011','Alice in Wonderland':'Alice in Wonderland 2010','The Avengers':'The Avengers 2012','A Christmas Carol':'A Christmas Carol 2009','Point Break':'Point Break 2015','Conan the Barbarian':'Conan the Barbarian 2011','Fast Lane':'Fast Lane 2011','Cousteau Collection':'The Silent World 1956'}
-def norm(t):return re.sub(r'[^a-z0-9]','',t.lower().replace('3d',''))
-def slug(t):return re.sub(r'^-|-$','',re.sub(r'[^a-z0-9]+','-',t.lower()))
+"""Download missing poster JPEGs for the 220-entry 3D Film Library.
+Uses Cinemeta search results; existing poster files are never overwritten.
+"""
+import json
+import re
+import time
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+HTML = (ROOT / 'index.html').read_text(encoding='utf-8')
+match = re.search(r'\bconst\s+(?:films|FILMS)\s*=\s*(\[.*?\])\s*;', HTML, re.S)
+if not match:
+    raise SystemExit('Could not locate film array in index.html')
+films = json.loads(match.group(1))
+if len(films) < 200:
+    raise SystemExit(f'Expected full catalogue (at least 200 entries); found {len(films)}')
+folder = ROOT / 'posters'
+folder.mkdir(exist_ok=True)
+
+def slug(title):
+    return re.sub(r'^-|-$', '', re.sub(r'[^a-z0-9]+', '-', title.lower()))
+
+def normal(title):
+    return re.sub(r'[^a-z0-9]', '', title.lower())
+
 def get(url):
- req=urllib.request.Request(url,headers={'User-Agent':'3DFilmLibrary/1.0 (personal movie catalogue)'})
- with urllib.request.urlopen(req,timeout=22) as response:return response.read()
-found=[];missing=[]
-for title in films:
- target=folder/(slug(title)+'.jpg')
- if target.exists() and target.stat().st_size>1000:found.append(title);continue
- q=exceptions.get(title,title)
- try:
-  endpoint='https://v3-cinemeta.strem.io/catalog/movie/top/search='+urllib.parse.quote(q)+'.json'
-  matches=json.loads(get(endpoint)).get('metas',[])
-  base=norm(re.sub(r'\s+\d{4}$','',q))
-  choices=[m for m in matches if m.get('type')=='movie' and norm(m.get('name',''))==base]
-  if not choices:
-   print('UNMATCHED',title);missing.append(title);continue
-  movie=choices[0]
-  poster=movie.get('poster','')
-  if not poster.startswith('https://'):missing.append(title);continue
-  data=get(poster)
-  if len(data)<1000 or data[:2]!=b'\xff\xd8':
-   # Re-encode PNG/WEBP to JPEG when necessary (Pillow available in Actions)
-   from PIL import Image
-   from io import BytesIO
-   img=Image.open(BytesIO(data)).convert('RGB');img.thumbnail((500,750));img.save(target,'JPEG',quality=83,optimize=True)
-  else:target.write_bytes(data)
-  found.append(title);print('OK',title)
- except Exception as e:print('FAILED',title,str(e)[:100]);missing.append(title)
- time.sleep(.15)
-print('Downloaded:',len(found),'Missing:',len(missing))
-pathlib.Path('poster-report.txt').write_text('Downloaded: '+str(len(found))+' / '+str(len(films))+'\nMissing:\n'+'\n'.join(missing)+'\n')
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (3D Film Library personal catalogue)'})
+    with urllib.request.urlopen(req, timeout=18) as response:
+        return response.read()
+
+success = []
+missing = []
+existing = []
+for i, film in enumerate(films, 1):
+    title = film['title']
+    target = folder / (slug(title) + '.jpg')
+    if target.exists() and target.stat().st_size > 1000:
+        existing.append(title)
+        continue
+    try:
+        search = 'https://v3-cinemeta.strem.io/catalog/movie/top/search=' + urllib.parse.quote(title, safe='') + '.json'
+        entries = json.loads(get(search)).get('metas', [])
+        # Do not attach a random unrelated poster to an uncertain catalogue entry.
+        selected = next((m for m in entries if normal(m.get('name', '')) == normal(title) and m.get('poster')), None)
+        if selected is None:
+            missing.append(f'{title} — no exact poster match')
+            continue
+        poster = selected['poster']
+        data = get(poster)
+        if len(data) < 1000 or not (data.startswith(b'\xff\xd8') or data.startswith(b'\x89PNG')):
+            missing.append(f'{title} — invalid poster image')
+            continue
+        # Poster URLs generally return JPEGs. PNG is skipped to preserve .jpg extension.
+        if not data.startswith(b'\xff\xd8'):
+            missing.append(f'{title} — poster not JPEG')
+            continue
+        target.write_bytes(data)
+        success.append(title)
+        print(f'[{i}/{len(films)}] Added {title}', flush=True)
+    except Exception as exc:
+        missing.append(f'{title} — {type(exc).__name__}: {exc}')
+    time.sleep(0.1)
+
+report = (f'Catalogue: {len(films)}\nExisting posters: {len(existing)}\nNew posters: {len(success)}\n'
+          f'Not matched: {len(missing)}\n\n' + '\n'.join(missing) + '\n')
+(ROOT / 'poster-report.txt').write_text(report, encoding='utf-8')
+print(report, flush=True)

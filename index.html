@@ -26,4 +26,35 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+  
+<script>
+const newFilms = [
+  {title:"Dune (1984)",year:"1984",genre:"Sci-Fi",review:"David Lynch's adaptation of Frank Herbert's epic novel, following Paul Atreides on the desert planet Arrakis."},
+  {title:"Blade Runner: The Final Cut",year:"1982",genre:"Sci-Fi",review:"Rick Deckard hunts replicants in a dark futuristic Los Angeles. Ridley Scott's definitive cut."},
+  {title:"Blade Runner 2049",year:"2017",genre:"Sci-Fi",review:"A young blade runner uncovers a secret that leads him to search for Rick Deckard."},
+  {title:"Avatar: The Way of Water",year:"2022",genre:"Sci-Fi",review:"Jake Sully and his family explore Pandora's oceans while facing a renewed human threat."},
+  {title:"Space: 1999",year:"1975",genre:"Sci-Fi",review:"A four-episode 3D edition of the classic science-fiction television series set aboard Moonbase Alpha."}
+];
+if (typeof films !== 'undefined') {
+  films.push(...newFilms);
+  films.sort((a,b)=>a.title.localeCompare(b.title));
+
+if (typeof render === 'function') render();
+document.querySelectorAll('.card').forEach(card => {
+  const title = card.querySelector('h2');
+  const body = card.querySelector('.content');
+  if (!title || !body || body.querySelector('.imdb-link')) return;
+  const imdb = document.createElement('a');
+  imdb.className = 'imdb-link';
+  imdb.textContent = 'IMDb ↗';
+  imdb.href = 'https://www.imdb.com/find/?q=' + encodeURIComponent(title.textContent.trim());
+  imdb.target = '_blank';
+  imdb.rel = 'noopener noreferrer';
+  imdb.style.cssText = 'display:block;margin:12px;padding:10px;background:#e6b84c;color:#111;border-radius:6px;text-align:center;text-decoration:none;font-weight:bold';
+  body.append(imdb);
+});
+
+}
+</script>
+
 </html>

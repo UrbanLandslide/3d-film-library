@@ -1,7 +1,7 @@
-Catalogue: 225
-Existing posters: 196
-New posters: 3
-Still missing: 26
+Catalogue: 281
+Existing posters: 199
+New posters: 40
+Still missing: 42
 
 Countdown (Der Countdown) — no usable matching poster
 Cousteau — 3 Film Collection — collection or uncertain title
@@ -29,3 +29,19 @@ Solomon Kane 2 (title uncertain) — collection or uncertain title
 Threesome 3D — no usable matching poster
 Dune (1984) — no usable matching poster
 Blade Runner: The Final Cut — no usable matching poster
+Pang i bygget (Fawlty Towers) — Episodes 1–12 — no usable matching poster
+The Man with the Harmonica — no usable matching poster
+Bottom — Series 2 — no usable matching poster
+Bottom — Series 3 — no usable matching poster
+Wallander: Tjuven — no usable matching poster
+Nobels testamente — no usable matching poster
+The X-Files: Fight the Future — no usable matching poster
+The Best of David Bowie — no usable matching poster
+Ozzy Osbourne — 10 Years — no usable matching poster
+The Doors — 30 Years Commemorative Edition — no usable matching poster
+The Doors (film) — no usable matching poster
+The Doors — DVD — collection or uncertain title
+Jack Nicholson: Gökboet (One Flew Over the Cuckoo’s Nest) — no usable matching poster
+The Ed Sullivan Show — The Beatles — no usable matching poster
+INXS: Baby Live — no usable matching poster
+The Doors: A Celebration — no usable matching poster

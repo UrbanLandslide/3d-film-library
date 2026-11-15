@@ -1,6 +1,6 @@
 
 #!/usr/bin/env python3
-"""Find missing posters for the 220-entry 3D Film Library.
+"""Find missing posters for the combined 3D and 2D Film Library.
 Existing poster images are never overwritten.
 """
 
@@ -29,13 +29,17 @@ if not match:
 
 films = json.loads(match.group(1))
 
-films.extend([
-    {"title": "Dune (1984)"},
-    {"title": "Blade Runner: The Final Cut"},
-    {"title": "Blade Runner 2049"},
-    {"title": "Avatar: The Way of Water"},
-    {"title": "Space: 1999"}
-])
+# All 3D and 2D titles are now included in the single films array.
+# Do not append the old five-title list: it can create duplicates.
+# The website uses the same title slug for poster filenames.
+seen_titles = set()
+unique_films = []
+for film in films:
+    key = re.sub(r"[^a-z0-9]+", "-", film["title"].lower()).strip("-")
+    if key not in seen_titles:
+        seen_titles.add(key)
+        unique_films.append(film)
+films = unique_films
 
 
 if len(films) < 200:
@@ -102,6 +106,7 @@ MANUAL = {
     "The Presence (title uncertain)",
     "Skarb: Death of Dora Land 3D",
     "Solomon Kane 2 (title uncertain)",
+    "The Doors — DVD",
 }
 
 

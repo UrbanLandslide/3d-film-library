@@ -1,6 +1,6 @@
 Catalogue: 281
-Existing posters: 199
-New posters: 40
+Existing posters: 239
+New posters: 0
 Still missing: 42
 
 Countdown (Der Countdown) — no usable matching poster
